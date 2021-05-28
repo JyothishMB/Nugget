@@ -1,0 +1,28 @@
+<div class="createwrapper">
+  <form #postform="ngForm" (submit)="onCreateUser(postform)" class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="First Name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="LastName">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Nationality">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Phone Number">
+    </mat-form-field>
+    <button 
+      mat-raised-button 
+      color="primary">Create User</button>
+  </form>
+</div>
+
+
