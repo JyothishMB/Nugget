@@ -1,23 +1,57 @@
 <div class="createwrapper">
   <form #postform="ngForm" (submit)="onCreateUser(postform)" class="example-form">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="First Name">
+      <input 
+        type="text"
+        matInput 
+        name="firstName"
+        [ngModel] = "user?.firstName"
+        required
+        #firstName="ngModel"
+        placeholder="First Name">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="LastName">
+      <input 
+        type="text"
+        matInput 
+        name="lastName"
+        [ngModel] = "user?.lastName"
+        required
+        #lastName="ngModel"
+        placeholder="Last Name">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Email">
+      <input type="text"
+        matInput 
+        name="email"
+        [ngModel] = "user?.email"
+        required
+        #email="ngModel"
+        placeholder="email">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Nationality">
+      <input 
+        type="text"
+        matInput 
+        name="phone"
+        [ngModel] = "user?.phone"
+        required
+        #phone="ngModel"
+        placeholder="Phone">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Phone Number">
+      <input 
+        type="text"
+        matInput 
+        name="nationality"
+        [ngModel] = "user?.nationality"
+        required
+        #nationality="ngModel"
+        placeholder="Nationality">
     </mat-form-field>
     <button 
       mat-raised-button 

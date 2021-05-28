@@ -10,12 +10,15 @@ import { User } from 'src/app/_models/User';
 })
 export class CreateUserComponent implements OnInit {
 
+  user: User;
+
   constructor(public userService: UserService) { }
 
   ngOnInit() {
   }
 
   onCreateUser(form: NgForm) {
+    debugger;
     if (form.invalid){
       return;
     }
