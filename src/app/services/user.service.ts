@@ -3,11 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { User } from '../_models/User';
+import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+private users: User[] = [];
+private usersUpdated = new Subject<User[]>();
+
 
 constructor(private http: HttpClient, private router: Router) {
   
@@ -29,6 +35,30 @@ addUser(firstName: string, lastName: string, email: string, phone: string, natio
       user.id = id;
       this.router.navigate(["/"]);
     })
+}
+
+getUsers(){
+  this.http.get<{ message:string, users:any }>(
+    "http://localhost:5000/api/users"
+  ).pipe(map((getData) => {
+    return getData.users.map(user => {
+      return {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        nationality: user.nationality,
+        id: user._id,
+      };
+    });
+  })).subscribe((users) => {
+    this.users = users;
+    this.usersUpdated.next([...this.users])
+  });
+}
+
+getUserUpdatedListner() {
+  return this.usersUpdated.asObservable();
 }
 
 }

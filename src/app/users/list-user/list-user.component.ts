@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/_models/User';
 
 export interface PeriodicElement {
   name: string;
@@ -26,14 +29,29 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './list-user.component.html',
   styleUrls: ['./list-user.component.css']
 })
-export class ListUserComponent implements OnInit {
+export class ListUserComponent implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'phone', 'nationality'];
   dataSource = ELEMENT_DATA;
   
-  constructor() { }
+  users: User[] = []
+  private userSub: Subscription;
+
+  constructor(public userService: UserService) {
+    this.userSub = new Subscription();
+  }
 
   ngOnInit() {
+    this.userService.getUsers();
+    this.userSub = this.userService.getUserUpdatedListner()
+      .subscribe((users: User[]) => {
+        debugger;
+        this.users = users;
+      });
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
   }
 
 }

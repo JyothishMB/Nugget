@@ -21,4 +21,13 @@ router.post("", (req, res, next) => {
     });
 });
 
+router.get("", (req, res, next) => {
+    User.find().then(documents => {
+        res.status(200).json({
+            message: "Users fetched successfully",
+            users: documents
+        });
+    })
+})
+
 module.exports = router;
