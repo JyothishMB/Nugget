@@ -1,13 +1,10 @@
 <div class="createwrapper">
-  <form #postform="ngForm" (submit)="onCreateUser(postform)" class="example-form">
+  <form [formGroup]="form" class="example-form">
     <mat-form-field class="example-full-width">
       <input 
         type="text"
         matInput 
-        name="firstName"
-        [ngModel] = "user?.firstName"
-        required
-        #firstName="ngModel"
+        formControlName="firstName"
         placeholder="First Name">
     </mat-form-field>
 
@@ -15,20 +12,14 @@
       <input 
         type="text"
         matInput 
-        name="lastName"
-        [ngModel] = "user?.lastName"
-        required
-        #lastName="ngModel"
+        formControlName="lastName"
         placeholder="Last Name">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <input type="text"
         matInput 
-        name="email"
-        [ngModel] = "user?.email"
-        required
-        #email="ngModel"
+        formControlName="email"
         placeholder="email">
     </mat-form-field>
 
@@ -36,10 +27,7 @@
       <input 
         type="text"
         matInput 
-        name="phone"
-        [ngModel] = "user?.phone"
-        required
-        #phone="ngModel"
+        formControlName="phone"
         placeholder="Phone">
     </mat-form-field>
 
@@ -47,10 +35,7 @@
       <input 
         type="text"
         matInput 
-        name="nationality"
-        [ngModel] = "user?.nationality"
-        required
-        #nationality="ngModel"
+        formControlName="nationality"
         placeholder="Nationality">
     </mat-form-field>
     <button 

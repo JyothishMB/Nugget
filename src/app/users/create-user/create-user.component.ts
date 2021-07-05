@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/_models/User';
 
@@ -11,19 +11,37 @@ import { User } from 'src/app/_models/User';
 export class CreateUserComponent implements OnInit {
 
   user: User;
+  form: FormGroup;
 
   constructor(public userService: UserService) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      firstName: new FormControl(null, {
+        validators: [Validators.required]
+      }),
+      lastName: new FormControl(null, {
+        validators: [Validators.required]
+      }),
+      email: new FormControl(null, {
+        validators: [Validators.required]
+      }),
+      phone: new FormControl(null, {
+        validators: [Validators.required]
+      }),
+      nationality: new FormControl(null, {
+        validators: [Validators.required]
+      }),
+    });
   }
 
-  onCreateUser(form: NgForm) {
+  onCreateUser() {
     debugger;
-    if (form.invalid){
+    if (this.form.invalid){
       return;
     }
-    this.userService.addUser(form.value.firstName, form.value.lastName, form.value.email, form.value.phone, form.value.nationality)
+    this.userService.addUser(this.form.value.firstName, this.form.value.lastName, this.form.value.email, this.form.value.phone, this.form.value.nationality)
 
-    form.resetForm();
+    this.form.reset();
   }
 }
