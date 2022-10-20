@@ -1,1 +1,9 @@
-<p>post-list works!</p>
+<mat-card *ngFor="let post of posts" class="post-card">
+    <mat-card-title>{{ post.title }}</mat-card-title>
+    <mat-card-subtitle>Posted by {{post.postedby}} on {{ post.postedon | date }}</mat-card-subtitle>
+    <mat-card-content>{{ post.body }}</mat-card-content>
+    <mat-card-actions>
+        <button mat-button><mat-icon>thumb_up</mat-icon></button>
+        <button mat-button><mat-icon>share</mat-icon></button>
+    </mat-card-actions>
+</mat-card>
